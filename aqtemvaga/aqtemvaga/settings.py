@@ -96,7 +96,7 @@ DATABASES = {
         'NAME': 'u136613164_vagasonline',
         'USER': 'u136613164_renato',
         'PASSWORD': '6Sr]W1h*Kjr4',
-        'HOST': 'localhost',  # Ou o endereço do host fornecido pela Hostinger
+        'HOST': '192.168.1.2',  # Ou o endereço do host fornecido pela Hostinger
         'PORT': '3306',  # Porta padrão do MySQL
     }
 }
