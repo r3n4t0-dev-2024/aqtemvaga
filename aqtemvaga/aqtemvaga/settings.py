@@ -93,9 +93,9 @@ DATABASES = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'vagasonline',
-        'USER': 'renato_aq',
-        'PASSWORD': 'renatomarleneA1984',
+        'NAME': 'u136613164_vagasonline',
+        'USER': 'u136613164_renato',
+        'PASSWORD': '6Sr]W1h*Kjr4',
         'HOST': 'MariaDB',  # Ou o endereço do host fornecido pela Hostinger
         'PORT': '3306',  # Porta padrão do MySQL
     }
