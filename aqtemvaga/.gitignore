@@ -1,0 +1,4 @@
+# Ignorar arquivos do Composer se não forem utilizados
+composer.lock
+composer.json
+

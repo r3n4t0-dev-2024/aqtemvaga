@@ -1,0 +1,47 @@
+{% extends 'page/home_base.html' %}
+{% load static %}
+{% block main %}
+{% block header %}{% endblock header %}
+<div class="container col-lg-7 pt-5">
+    <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+    <nav id="navmenu" class="navmenu">
+        <ul>
+            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            <ul class="d-flex">
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </ul>
+            <li><a href="{% url 'perfil_empregador' %}">Voltar</a></li>
+        </ul>
+    </nav>
+</div>
+<hr>
+    
+    <div class="container">
+        {% if vagas %}
+        <div class="row">
+            {% for vaga in vagas %}
+            <div class="col-md-6 mb-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ vaga.Estado }}</h5>
+                      <p><strong>Local:</strong> {{ vaga.Cidade }}, {{ vaga.Estado }}</p>
+                        <h5 class="card-title">{{ vaga.Cargo }}</h5>
+                        <p class="card-text">{{ vaga.Descrição|truncatewords:30 }}</p>
+                        <p><strong>Salário:</strong> R$ {{ vaga.Salário }}</p>
+                        <a href="{% url 'editar_vaga' vaga.id %}" class="btn btn-secondary">Editar</a>
+                        <!-- Botão de Deletar -->
+                        <form method="POST" action="{% url 'deletar_vaga' vaga.id %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar esta vaga?');">Deletar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p>Você não tem vagas adicionadas!</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'page/home_base.html' %}
+{% load static %}
+{% block main %}
+{% block header %}{% endblock header %}
+
+<div class="container pt-5 col-lg-4"> 
+    <div class="row"> 
+      <div class="text-left mb-3"> 
+        <h2>Currículos Recebidos</h2>
+      </div> 
+    </div>
+  </div>
+  <hr>
+  <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+<main class="main">
+    <div class="container pt-1">
+        <div class="row justify-content-center">
+            <br> 
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Candidato</th>
+                        <th>Cargo</th>
+                        <th>Salário Pretendido</th>
+                        <th>Data de Envio</th>
+                        <th>Arquivo</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if curriculos %}
+                    {% for curriculo in curriculos %} 
+                    <tr>
+                        <td>{{ curriculo.usuario.username }}</td>
+                        <td>{{ curriculo.cargo_pretendido }}</td>
+                        <td>R$ {{ curriculo.salário_pretendido }}</td>
+                        <td>{{ curriculo.data_envio }}</td>
+                        <td><a href="{{ curriculo.arquivo.url }}">Visualizar</a></td>
+                        <td>
+                            <form method="post" action="{% url 'delete_curriculo' curriculo.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                            
+                        </td>
+                    </tr>
+                    {% endfor %} 
+                    {% else %}
+                    <p>Você não tem currículos recebidos no momento!</p>
+                    {% endif %}
+                    <br>
+                </tbody>
+            </table>
+            
+        </div>
+        <a href="{% url 'perfil_empregador' %}" class="btn btn-primary">Voltar</a>
+    </div>
+
+    {% for curriculo in curriculos %}
+    <tr>
+        
+        
+       
+    </tr>
+{% endfor %}
+
+    
+</main>
+{% endblock main %}

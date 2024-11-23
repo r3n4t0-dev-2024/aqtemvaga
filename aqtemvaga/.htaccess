@@ -1,0 +1,12 @@
+# Ativar o uso de URLs amigáveis
+Options +FollowSymLinks
+RewriteEngine On
+
+# Permitir acesso a todos os arquivos
+Order allow,deny
+Allow from all
+
+# Redirecionar todas as requisições para o WSGI handler do Django
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /myproject/wsgi.py/$1 [QSA,PT,L]

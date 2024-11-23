@@ -1,0 +1,45 @@
+{% extends 'page/home_base.html' %}
+{% block main %}
+{% block header %}{% endblock header %}
+<div class="container col-lg-7 pt-5">
+  <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+  <nav id="navmenu" class="navmenu">
+      <ul>
+          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+          <ul class="d-flex">
+              <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+          </ul>
+          <li><a href="{% url 'perfil_empregador' %}">Voltar</a></li>
+      </ul>
+  </nav>
+</div>
+<hr>
+<!-- Notificação de mensagem -->
+<div class="container col-lg-5 pt-5 text-center">
+  {% if messages %}
+  <div class="alert alert-success col-lg-14">
+  {% for message in messages %}
+  <p>{{ message }}</p> 
+  {% endfor %}
+  </div>
+  {% endif %}
+  </div>
+  <br>
+  <!-- Notificação de mensagem -->
+<i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+<main class="main">
+  <div class="container pt-4">
+    <div class="col-lg-8 mx-auto shadow p-0 mt-4 mb-4">
+      <div class="p-5">
+        <a href="{% url 'area_empregador' %}"><h2>Adicionar Vaga</h2></a>
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="btn btn-primary">Salvar</button>
+          <a href="{% url 'dash_empregador' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock main %}

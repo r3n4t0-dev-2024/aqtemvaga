@@ -1,0 +1,39 @@
+{% extends 'page/home_base.html' %}
+{% load static %}
+{% block main %}
+<main class="main">
+    <section id="blog-posts" class="blog-posts section">
+        <div class="container">
+            <div class="row justify-content-center">
+                {% for BlogView in posts %}
+                <div class="col-12 col-md-8 mb-4">
+                    <div class="blog-post card h-100 shadow">
+                        {% if BlogView.imagem %}
+                        <div class="d-flex justify-content-center">
+                            <img src="{{ BlogView.imagem.url }}" class="card-img-top img-fluid mx-auto d-block rounded" alt="{{ BlogView.titulo }}">
+                        </div>
+                        {% endif %}
+                        <div class="card-body text-center">
+                            <h4 class="card-title">{{ BlogView.titulo }}</h4>
+                            <p class="card-text" id="content-{{ forloop.counter }}">
+                                {{ BlogView.conteudo|truncatewords:200 }}
+                                <span id="more-{{ forloop.counter }}" style="display: none;">{{ BlogView.conteudo|safe }}</span>
+                            </p>
+                            <a href="javascript:void(0);" class="btn btn-primary">Leia mais</a>
+                            <ul>
+                            </ul>
+                            <br><a href="{{BlogView.url}}"> Mais detalhes na {{BlogView.autor}}</a>
+                        </div>
+                        
+                        <div class="card-footer text-center">
+                            <small class="text-muted">Publicado por {{ BlogView.autor }} em {{ BlogView.data_publicacao|date:"d/m/Y H:i" }}</small>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</main>
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock %}

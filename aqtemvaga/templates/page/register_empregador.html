@@ -1,0 +1,61 @@
+{% extends 'page/home_base.html' %}
+  {% block main %}
+  <main class="main">
+    <div class="container pt-1">
+      <div class="col-lg-6 mx-auto shadow p-0 mt-4 mb-4">
+        <div class="p-5 text-center">
+          <i><h1>AQ!Temvaga/Empregador</h1></i>
+          <hr>
+          <form method="POST" action="{% url 'register_empregador' %}">
+            {% csrf_token %}
+            <div class="form-group">
+              <label class="label" for="usuario">Crie um usuario</label><br>
+              <input class="form-control" name="usuario" placeholder="" type="text" required/><br><br>
+            </div>
+            <div class="form-group">
+              <label class="label" for="primeiro_nome">Nome</label><br>
+              <input class="form-control" name="primeiro_nome" placeholder="" type="text" required/><br><br>
+            </div>
+            <div class="form-group">
+              <label class="label" for="email">Digite seu E-mail</label><br>
+              <input class="form-control" name="email" type="email" placeholder="" required/><br><br>
+            </div>
+  
+            <div class="form-group">
+              <label class="label" for="nome_da_empresa">Nome da empresa</label><br>
+              <input class="form-control" name="nome_da_empresa" type="nome_da_empresa" placeholder="" required/><br><br>
+            </div>
+  
+            <div class="form-group">
+              <label class="label" for="cnpj">CNPJ</label><br>
+              <input class="form-control" name="cnpj" type="cnpj" placeholder="" required/><br><br>
+            </div>
+
+            <div class="form-group">
+              <label class="label" for="password">Criar senha</label><br>
+              <input class="form-control" name="password" type="password" placeholder="" required/><br><br>
+            </div>
+  
+            <div class="form-group">
+              <label class="label" for="password2">Confirmar senha</label><br>
+              <input class="form-control" name="password2" type="password2" placeholder="" required/><br><br>
+            </div>
+  
+            <button class="btn btn-success" type="submit">Confirmar Cadastro</button>
+            <div id="messages" class="mt-4">
+              {% if messages %}
+                <div class="alert alert-info">
+                  {% for message in messages %}
+                    <p>{{ message }}</p>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+{% endblock main %}
+
+

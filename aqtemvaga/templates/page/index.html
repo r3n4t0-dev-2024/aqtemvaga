@@ -1,0 +1,106 @@
+{% extends 'page/home_base.html' %}
+{% load static %}
+{% block main %}
+<main class="main">
+
+<!-- Pesquisa de vagas -->
+<div class="container col-md-5">
+    <form method="GET" action="/" class="search-form d-flex justify-content-center">
+        <input class="form-control me-2" type="search" placeholder="Digite o nome da vaga" aria-label="Search" name="nome" value="{{ nome }}">
+        <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i> Buscar</button>
+    </form>
+</div>
+<!-- Pesquisa de vagas -->
+
+<!-- Filtrando Estado/Cidade/Bairros -->
+<div class="container pt-4 col-md-5">
+    <div class="filter-box">
+        <div class="dropdown">
+            <button class="dropbtn">Filtrar Estado</button>
+            <div class="dropdown-content">
+                <a href="/" class="filter-link">Todas as Regiões</a>
+                {% for estado in estados %}
+                <a href="?estado={{ estado.Estado }}" class="filter-link">{{ estado.Estado }}</a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">Filtrar Cidade</button>
+            <div class="dropdown-content">
+                <a href="?estado={{ estado.Estado }}" class="filter-link">Todas as Regiões</a>
+                {% for cidade in cidades %}
+                <a href="?estado={{ estado.Estado }}&cidade={{ cidade.Cidade }}" class="filter-link">{{ cidade.Cidade }}</a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">Filtrar Bairro</button>
+            <div class="dropdown-content">
+                <a href="?estado={{ estado.Estado }}&cidade={{ cidade.Cidade }}" class="filter-link">Todas as Regiões</a>
+                {% for bairro in bairros %}
+                <a href="?estado={{ estado.Estado }}&cidade={{ cidade.Cidade }}&bairro={{ bairro.Bairro }}" class="filter-link">{{ bairro.Bairro }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Filtrando Estado/Cidade/Bairros -->
+
+<!-- Notificação de mensagem -->
+<div class="container col-lg-5 pt-5 text-center">
+    {% if messages %}
+    <div class="alert alert-success col-lg-14">
+        {% for message in messages %}
+        <p>{{ message }}</p> 
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+<br>
+<!-- Notificação de mensagem -->
+
+<!-- Vagas de emprego -->
+<div class="container col-md-9" id="vagas-container">
+    <div class="row">
+        {% if vagas %}
+        {% for aqtemvaga_regiao in vagas %}
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <i class="description">Postado há: {{ aqtemvaga_regiao.Data_criacao|timesince }} atrás</i><br>
+                    <h4 class="tierra">{{ aqtemvaga_regiao.Estado }}</h4>
+                    <h5 class="description">{{ aqtemvaga_regiao.Cidade }}</h5>
+                    <h4 class="title">{{ aqtemvaga_regiao.Cargo }}</h4>
+                    <p class="description">R$ {{ aqtemvaga_regiao.Salário }}</p><br>
+                    <a onclick="saveScrollPosition()" class="btn btn-primary" href="{% url 'saber_mais_detalhes' aqtemvaga_regiao.id %}">Saber Mais</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>Nenhuma vaga encontrada.</p>
+        {% endif %}
+    </div>
+</div>
+<!-- Vagas de emprego -->
+
+</main>
+
+<script>
+// Salva a posição do scroll na sessão do navegador
+function saveScrollPosition() {
+    sessionStorage.setItem('scrollPos', window.scrollY);
+}
+
+// Recupera a posição do scroll da sessão e rola a página para essa posição
+function loadScrollPosition() {
+    const scrollPos = sessionStorage.getItem('scrollPos');
+    if (scrollPos) {
+        window.scrollTo(0, parseInt(scrollPos, 10));
+        sessionStorage.removeItem('scrollPos'); // Limpa a posição do scroll após usá-la
+    }
+}
+
+window.onload = loadScrollPosition;
+</script>
+{% endblock %}

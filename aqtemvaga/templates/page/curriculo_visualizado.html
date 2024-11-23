@@ -1,0 +1,28 @@
+{% extends 'page/home_base.html' %}
+{% load static %}
+{% block main %}
+{% block header %}{% endblock %}
+<div class="container pt-5 col-lg-12"> 
+  <div class="row"> 
+    <div class="text-left mb-3"> 
+      <a href="/" class="btn btn-primary">Voltar</a> 
+    </div> 
+  </div>
+</div>
+<i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+<hr>
+<div class="container shadow text-center col-lg-12 pt-5">
+  <h2>Visualizações dos Meus Currículos</h2>
+  {% if curriculos %}
+    {% for curriculo in curriculos %}
+      <h6>Currículo: {{ curriculo.cargo }}</h6>
+      <p>Salário Pretendido: R$ {{ curriculo.salario_pretendido }}</p>
+      <p>Enviado em: {{ curriculo.data_envio }}</p>
+      <p>Total de Visualizações: {{ visualizacoes_por_curriculo.curriculo.id|default:0 }}</p>
+      <hr>
+    {% endfor %}
+  {% else %}
+    <p>Nenhum currículo encontrado.</p>
+  {% endif %}
+</div>
+{% endblock %}

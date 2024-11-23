@@ -1,0 +1,18 @@
+<div class="container mt-5">
+  <h1>Perfil do Candidato</h1>
+  <h2>Currículos</h2>
+  <ul>
+      {% for curriculo in curriculos %}
+      <li>{{ curriculo }}</li>
+      <p>Enviado {{curriculo.data_envio}}</p>
+      {% endfor %}
+  </ul>
+
+  <h2>Visualizações</h2>
+  <ul>
+      {% for visualizacao in visualizacoes %}
+      <li>{{ visualizacao.visualizador.username }} Você teve  {{ visualizacao.data_visualizacao }}</li>
+      {% endfor %}
+  </ul>
+</div>
+

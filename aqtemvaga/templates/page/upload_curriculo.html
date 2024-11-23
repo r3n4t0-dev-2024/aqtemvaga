@@ -1,0 +1,29 @@
+{% extends 'page/home_base.html' %}
+{% load static %}
+{% block main %}
+<header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center me-auto col-lg-10">
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        <nav id="navmenu" class="navmenu">
+            <ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+                <ul class="d-flex">
+                    <li><a href="{% url 'perfil_candidato' %}">Perfil do Candidato</a></li>
+                    <li><a href="/">Sair</a></li>
+                </ul>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div class="container mt-5 col-lg-10">
+  
+  <h1>Anexar Currículo</h1>
+  <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Anexar</button>
+      <a href="{% url 'perfil_candidato' %}" class="btn btn-secondary">Cancelar</a>
+  </form>
+  <br>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'page/home_base.html' %}
+{% load static %}
+{% block main %}
+{% block header %}{% endblock %}
+    <div class="container pt-5 col-lg-12">
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        <nav id="navmenu" class="navmenu">
+            <ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+                <ul class="d-flex">
+                    <div class="dropdown">
+                        <button class="dropbtn">Painel do Candidato</button>
+                        <div class="dropdown-content">
+                            <a href="{% url 'atualizar_perfil' %}" class="filter-link">Editar Perfil Profissional</a>
+                            <a href="{% url 'curriculo_enviado'%}" class="filter-link">CV enviados</a>
+                            <a href="{% url 'mudar_senha' %}" class="filter-link">Mudar Senha</a>
+                            <a href="/">Sair</a>
+                        </div>
+                    </div>
+                </ul>
+            </ul>
+        </nav>
+    </div>
+<main class="main">
+    <div class="container pt-4">
+      <div class="col-lg-8 mx-auto shadow p-0 mt-4 mb-4">
+        <div class="p-5">
+          
+          <h2><i>Seja bem vindo {{user.username}}!<br> Ao seu Painel do candidato</i> </h2>
+          
+        </div>
+      </div>
+    </div>
+  </main>
+
+{% endblock %}

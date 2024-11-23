@@ -1,0 +1,73 @@
+{% extends 'page/home_base.html' %}
+{% load static %}
+{% block main %}
+{% block header %}{% endblock %}
+<div class="container pt-5 col-lg-12"> 
+  <div class="row"> 
+    <div class="text-left mb-3"> 
+      <a href="/" class="btn btn-primary">Voltar</a> 
+    </div> 
+  </div>
+</div>
+<i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+<hr>
+<main class="main">
+    <div class="container text-center p-1">
+        <div class=" col-lg6 pt-5 ">
+            
+                <!-- Notificação de mensagem -->
+<div class="container col-lg-5 pt-5 text-center">
+    {% if messages %}
+    <div class="alert alert-success col-lg-14">
+    {% for message in messages %}
+    <p>{{ message }}</p> 
+    {% endfor %}
+    </div>
+    {% endif %}
+    </div>
+    <br>
+    <!-- Notificação de mensagem -->
+
+            {% for vaga_oferecido in detalhes %}
+           <!-- Saber mais -->
+    <div class="container">
+        <div class="row justify-content-center" data-aos="zoom-out" >
+          <div class="col-xl-6 col-lg-6 text-center ">
+            <i class="sitename">AQ!temVagas</i><br><br>
+            <i class="tierra">Data de Postagem: {{vaga_oferecido.Data_criacao|date:"d/m/Y, h:i." }}</i>   
+            <i class="tierra"><h2>{{vaga_oferecido.Cargo}}</h2></i><br>
+            <i class="tierra" ><h4>Salário</h4>{{vaga_oferecido.Salário}}</i><br><br>
+            <i class="tierra "><h4>Requisitos</h4>{{vaga_oferecido.Requisitos}}</i><br><br>   
+            <i class="tierra "><h4>Beneficios</h4>{{vaga_oferecido.Beneficios}}</i><br><br>
+            <i class="tierra "><h4>Descrição</h4>{{vaga_oferecido.Descrição}}</i><br><br>
+            <i class="tierra "><h4>Empresa</h4>{{vaga_oferecido.Empresa}}</i><br><br>
+            <i class="tierra "><h4>Contato</h4>{{vaga_oferecido.Contato}}</i><br><br>
+           <!-- Saber mais -->
+            {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        {% if user.is_authenticated %}
+        <!-- Validação para envio do Currículo -->
+         <div class="container col-lg-6 mx-auto pt-2 mt-4 mb-4 mx-auto shadow p-0 ">
+          <h6><i>Importante preencher essas informações <br> para que a empresa possa fazer a seleção.</i></h6>
+          <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+              <p>{{ form.as_p }}</p>
+              <button type="submit" class="btn btn-primary">Enviar</button>  
+        </form>
+          <br>
+          {% else %}
+          <h6>Para enviar o seu Currículo é necessário </h6>
+          <h6><a href="{% url 'login_view' %}?next={{ request.path }}">FAZER LOGIN</a></h6><!-- NEXT, usado para ter o redirecionamento anterior -->
+          <h6>Ou</h6>
+          <h6><a href="{% url 'register_view' %}?next={{ request.path }}">CADASTRAR</a></h6>
+          {% endif %}
+         </div>
+        <!-- Validação para envio do Currículo -->
+      <br>
+</main>
+{% endblock %}
+    
+

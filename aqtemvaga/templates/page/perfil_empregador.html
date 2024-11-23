@@ -1,0 +1,33 @@
+{% extends 'page/home_base.html' %}
+{% load static %}
+{% block main %}
+{% block header %}{% endblock header %}
+<i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        <div class="container pt-4 col-md-10">
+          <div class="filter-box">
+              <div class="dropdown">
+                  <button class="dropbtn">Gerenciar Painel</button>
+                  <div class="dropdown-content">
+                      <a href="{% url 'area_empregador' %}">Adicionar Vagas</a>
+                      <a href="{% url 'dash_empregador' %}">Minhas vagas Adicionadas</a>
+                      <a href="{% url 'curriculo_recebido' %}">Currículos recebidos</a>
+                      <a href="{% url 'mudar_senha' %}">Mudar Senha</a>
+                      <a href="/">Sair</a>
+                  </div>
+              </div>
+          </div>
+        </div>
+    </div>
+</header>
+<main class="main">
+  <div class="container pt-4">
+    <div class="col-lg-8 mx-auto shadow p-0 mt-4 mb-4">
+      <div class="p-5">
+        
+        <h2><i>Seja bem vindo {{user.first_name}}!<br> Ao seu Painel do Empregador</i> </h2>
+        
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock main %}

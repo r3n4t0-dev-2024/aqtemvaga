@@ -1,0 +1,67 @@
+{% extends 'page/home_base.html' %}
+{% load static %}
+{% block main %}
+{% block header %}{% endblock header %}
+        <div class="container col-lg-7 pt-5">
+            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                    <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+                    <ul class="d-flex">
+                        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+                    </ul>
+                    <li><a href="{% url 'perfil_candidato' %}">Voltar</a></li>
+                </ul>
+            </nav>
+        </div>
+        <hr>
+<main class="main">
+
+  <div class="container">
+    <div class="col-lg-8 mx-auto shadow p-0 mt-4 mb-4 text-center">
+      <h2 class="pt-4">Meu Perfil Profissional</h2>
+      <form method="post" class="p-4">
+          {% csrf_token %}
+          <div class="form-group">
+              <label for="nome_completo">Nome Completo</label>
+              <input type="text" class="form-control" id="nome_completo" name="nome_completo" value="{{ form.nome_completo.value }}">
+          </div>
+          <div class="form-group">
+              <label for="telefone">Telefone</label>
+              <input type="text" class="form-control" id="telefone" name="telefone" value="{{ form.telefone.value }}">
+          </div>
+          <div class="form-group">
+              <label for="endereco">Endereço</label>
+              <input type="text" class="form-control" id="endereco" name="endereco" value="{{ form.endereco.value }}">
+          </div>
+          <div class="form-group">
+              <label for="cidade">Cidade</label>
+              <input type="text" class="form-control" id="cidade" name="cidade" value="{{ form.cidade.value }}">
+          </div>
+          <div class="form-group">
+              <label for="bairro">Bairro</label>
+              <input type="text" class="form-control" id="bairro" name="bairro" value="{{ form.bairro.value }}">
+          </div>
+          <div class="form-group">
+              <label for="perfil_profissional">Perfil Profissional</label>
+              <textarea class="form-control" id="perfil_profissional" name="perfil_profissional" rows="3">{{ form.perfil_profissional.value }}</textarea>
+          </div>
+          <div class="form-group">
+              <label for="experiencia_profissional">Experiência Profissional</label>
+              <textarea class="form-control" id="experiencia_profissional" name="experiencia_profissional" rows="3">{{ form.experiencia_profissional.value }}</textarea>
+          </div>
+          <div class="form-group">
+              <label for="formacao_academica">Formação Acadêmica</label>
+              <textarea class="form-control" id="formacao_academica" name="formacao_academica" rows="3">{{ form.formacao_academica.value }}</textarea>
+          </div>
+          <div class="form-group">
+              <label for="cursos">Cursos</label>
+              <textarea class="form-control" id="cursos" name="cursos" rows="3">{{ form.cursos.value }}</textarea>
+          </div>
+          <button type="submit" class="btn btn-primary mt-3">Salvar</button>
+      </form>
+    <br>
+    </div>
+  </div>   
+</main>
+{% endblock %}
