@@ -81,25 +81,15 @@ WSGI_APPLICATION = 'aqtemvaga.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-"""
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-"""
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'u136613164_vagasonline',
-        'USER': 'u136613164_renato',
-        'PASSWORD': '6Sr]W1h*Kjr4',
-        'HOST': '192.168.1.2',  # Ou o endereço do host fornecido pela Hostinger
-        'PORT': '3306',  # Porta padrão do MySQL
-    }
-}
+
 
 
 
